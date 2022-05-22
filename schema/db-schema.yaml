@@ -1,0 +1,37 @@
+---
+%{PREFIX}like:
+  like_id:
+    Field: like_id
+    Type: int(11)
+    'Null': NO
+    Key: UNI
+    Default:
+    Extra: 'AUTO_INCREMENT'
+  like_eid:
+    Field: like_eid
+    Type: int(11)
+    'Null': 
+    Key:
+    Default:
+    Extra: 
+  like_uid:
+    Field: like_uid
+    Type: varchar(255)
+    'Null': 
+    Key:
+    Default:
+    Extra: 
+  like_category:
+    Field: like_category
+    Type: varchar(255)
+    'Null': 
+    Key:
+    Default:
+    Extra: 
+  like_created:
+    Field: like_created
+    Type: 'datetime'
+    'Null': NO
+    Key:
+    Default: 
+    Extra:
