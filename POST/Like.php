@@ -11,7 +11,7 @@ use DB, SQL;
  */
 class Like extends ACMS_POST
 {
-    protected $isCSRF = false;
+    public $isCSRF = false;
 
     function post()
     {
