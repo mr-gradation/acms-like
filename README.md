@@ -25,6 +25,8 @@ a-blog cmsのサイトにいいね！ボタンを追加できる拡張アプリ�
   </button>
 ```
 
+※　`data-like-eid` の箇所は、Entry_Bodyモジュールであれば `{entry:loop.eid}` 、 Entry_Summaryモジュールであれば `{eid}` を入れてください。（エントリー画面だけの使用であれば　`%{EID}` で動きます。）
+
 ## いいね！ボタンの数の表示
 
 以下のスクリプトタグを設置してください。
@@ -41,6 +43,8 @@ a-blog cmsのサイトにいいね！ボタンを追加できる拡張アプリ�
   <span class="count">0</span>
 </p>
 ```
+
+※　`data-like-eid` の箇所は、Entry_Bodyモジュールであれば `{entry:loop.eid}` 、 Entry_Summaryモジュールであれば `{eid}` を入れてください。（エントリー画面だけの使用であれば　`%{EID}` で動きます。）
 
 ## いいね！ボタン押下時
 
