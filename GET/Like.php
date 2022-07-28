@@ -36,6 +36,7 @@ class Like extends ACMS_GET
         $SQL = SQL::newSelect('like');
         $SQL->addSelect('like_category');
         $SQL->addSelect('COUNT(`like_category`)');
+        $SQL->addSelect('like_category', 'amount', null, 'COUNT');
         $SQL->addWhereOpr('like_eid', $eid, '=');
         $SQL->addGroup('like_category');
         $all = $DB->query($SQL->get(dsn()), 'all');
@@ -43,9 +44,10 @@ class Like extends ACMS_GET
         // テンプレートに格納
         $count = [];
         foreach ($all as $key => $value) {
-            $count[$value['like_category']] = $value["COUNT(`like_category`)"];
-            if ($key == 'good') {
-                $count['count'] = $value["COUNT(`like_category`)"];
+            $key = $value['like_category'];
+            $count[$key] = $value['amount'];
+            if ($key === 'good') {
+                $count['count'] = $value['amount'];
             }
         }
 
