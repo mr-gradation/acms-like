@@ -2,7 +2,7 @@
 a-blog cmsのサイトにいいね！ボタンを追加できる拡張アプリです。
 
 ## ダウンロード
-[acms-like](https://github.com/mr-gradation/acms-like/releases/download/v1.0.0/acms-like-1.0.0.zip)
+[acms-like](https://github.com/mr-gradation/acms-like/releases/download/v1.0.1/acms-like-1.0.1.zip)
 
 ## インストール
 1. config.serve.php を変更し、`define('HOOK_ENABLE', 1);` にしてHOOKを有効にします。
