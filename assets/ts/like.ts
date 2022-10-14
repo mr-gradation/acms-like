@@ -40,62 +40,65 @@ $(document).on('click', '.js-like-button', function(e){
   return false;
 });
 
-/**
- * いいね！ボタンの表示
- */
-$('.js-like-button').each(function(){
-  var $like = $(this);
-  // パラメータを定義
-  var eid = $(this).data('like-eid');
-  var category = typeof($(this).data('like-category')) !== "undefined" ? $(this).data('like-category') : "good";
-  var params = new URLSearchParams();
-      params.append('async', '1');
-      params.append('mode', 'get');
-      params.append('eid', eid);
-      params.append('category', category);
-      params.append('formToken', "token");
-      params.append('ACMS_POST_Like', '');
-  // いいねを取得
-  Axios.post("", params).then((res) => {
-    var count = res.data.toString();
-    if( count.indexOf("_") !== -1 ){
-      // いいね済み
-      $like.addClass(votedClass);
-      $like.attr('disabled', true);
-      $like.find(countElementSelector).text(count.replace('_', ''));
-    } else {
-      // いいねしていない
-      $like.find(countElementSelector).text(count);
-    }
-  });
-});
-
-/**
- * いいね！数の表示
- */
-$('.js-like-numbers').each(function(){
-  var $like = $(this);
-  // パラメータを定義
-  var eid = $like.data('like-eid');
-  var params = new URLSearchParams();
-      params.append('async', '1');
-      params.append('mode', 'all');
-      params.append('eid', eid);
-      params.append('formToken', "token");
-      params.append('ACMS_POST_Like', '');
-  // いいねを取得
-  Axios.post("", params).then((res) => {
-    Object.keys(res.data).forEach(function (key) {
-      if ($like.find('[data-like-category]').length) {
-        var $target= $like.find('[data-like-category="'+key+'"]');
-        $target.text(res.data[key]);
+$(document).ready(function() {
+  /**
+   * いいね！ボタンの表示
+   */
+  $('.js-like-button').each(function(){
+    var $like = $(this);
+    // パラメータを定義
+    var eid = $(this).data('like-eid');
+    var category = typeof($(this).data('like-category')) !== "undefined" ? $(this).data('like-category') : "good";
+    var params = new URLSearchParams();
+        params.append('async', '1');
+        params.append('mode', 'get');
+        params.append('eid', eid);
+        params.append('category', category);
+        params.append('formToken', "token");
+        params.append('ACMS_POST_Like', '');
+    // いいねを取得
+    Axios.post("", params).then((res) => {
+      var count = res.data.toString();
+      if( count.indexOf("_") !== -1 ){
+        // いいね済み
+        $like.addClass(votedClass);
+        $like.attr('disabled', true);
+        $like.find(countElementSelector).text(count.replace('_', ''));
       } else {
-        if (key == 'good') {
-          var $target = $like.find(countElementSelector);
-          $target.text(res.data[key]);
-        }
+        // いいねしていない
+        $like.find(countElementSelector).text(count);
       }
     });
+  });
+
+  /**
+   * いいね！数の表示
+   */
+  $('.js-like-numbers').each(function(){
+    var $like = $(this);
+    // パラメータを定義
+    var eid = $like.data('like-eid');
+    var params = new URLSearchParams();
+        params.append('async', '1');
+        params.append('mode', 'all');
+        params.append('eid', eid);
+        params.append('formToken', "token");
+        params.append('ACMS_POST_Like', '');
+    // いいねを取得
+    Axios.post("", params).then((res) => {
+      Object.keys(res.data).forEach(function (key) {
+        if ($like.find('[data-like-category]').length) {
+          var $target= $like.find('[data-like-category="'+key+'"]');
+          $target.text(res.data[key]);
+        } else {
+          if (key == 'good') {
+            var $target = $like.find(countElementSelector);
+            $target.text(res.data[key]);
+          }
+        }
+      });
+    });
+
   });
 
 });
